@@ -29,20 +29,24 @@
       <div class="relative pt2 mb3" appClickOutside (isClicked)="showAutocomplete = false">
         <input
           type="text"
-          [disabled]="location"
           [(ngModel)]="profession"
           (ngModelChange)="filterList()"
           (focus)="showAutocomplete = true"
           placeholder="I'm looking for..."
           class="shadow-4 br-pill ba b--light-gray ph3 pv2 outline-0 w-100" />
-        <div class="absolute br3 shadow-4 left-1" *ngIf="!location && filteredProfessionList.length > 0 && showAutocomplete">
-          <p class="mv0 pv2 ph3 dim pointer black-70 bg-white br3" *ngFor="let profession of filteredProfessionList" (click)="selectProfession(profession)">{{profession}}</p>
+        <div class="absolute br3 shadow-4 left-1 bg-white" *ngIf="filteredProfessionList.length > 0 && showAutocomplete">
+          <p class="mv0 pv2 ph3 dim pointer black-70 bg-white br3 bg-white" *ngFor="let profession of filteredProfessionList" (click)="selectProfession(profession)">{{profession}}</p>
         </div>
       </div>
-      <div class="flex justify-end items-center mb3 ph3 pv1 bg-white w-100 br-pill shadow-4">
-        <p class="mv0 mr2">Any location</p>
-        <label class="toggle relative dib">
-          <input type="checkbox" class="toggle-input dn" [(ngModel)]="location" />
+      <div class="flex justify-end items-center mb3 ph3 pv1 w-100 br-pill shadow-4" [ngStyle]="{'background-color': location.checked ? 'rgb(235, 235, 228)' : 'white'}">
+        <input
+          type="text"
+          placeholder="Find in..."
+          class="bn outline-0 w-100"
+          [disabled]="location.checked" />
+        <p class="mv0 mh2 flex-none">Any location</p>
+        <label class="toggle relative dib flex-none">
+          <input type="checkbox" class="toggle-input dn" #location />
           <span class="slider round top-0 left-0 right-0 bottom-0 pointer absolute"></span>
         </label>
       </div>

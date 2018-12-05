@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   constructor() {}
 
-  location: Boolean = false;
   profession: string | null = null;
   showAutocomplete: Boolean = false;
   professionList: Array<string> = [
